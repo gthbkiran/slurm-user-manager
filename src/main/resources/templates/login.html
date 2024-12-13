@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login Page</title>
+</head>
+<body>
+<h1>Please Login</h1>
+
+<form th:action="@{/runshellscript}" method="post">
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" />
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" />
+    </div>
+    <button type="submit">Login</button>
+</form>
+
+<p>Don't have an account? <a href="/">Go back to Home</a></p>
+</body>
+</html>
