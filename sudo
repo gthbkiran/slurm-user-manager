@@ -4,3 +4,7 @@ kiran ALL=(ALL) NOPASSWD:ALL /etc/sudoers
 kiran ALL=(ALL) NOPASSWD:ALL /etc/sudoers
 kiran ALL=(ALL) NOPASSWD:ALL /etc/sudoers
 kiran ALL=(ALL) NOPASSWD:ALL /etc/sudoers
+shiva ALL=(ALL) NOPASSWD:ALL /etc/sudoers
+nikith ALL=(ALL) NOPASSWD:ALL /etc/sudoers
+praveen ALL=(ALL) NOPASSWD:ALL /etc/sudoers
+shiva ALL=(ALL) NOPASSWD:ALL /etc/sudoers

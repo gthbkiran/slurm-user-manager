@@ -66,18 +66,14 @@
 <body>
 
 <div class="form-container" th:fragment="content">
-  <h2>Update Account</h2>
+  <h2>Delete Account</h2>
 
-  <form th:action="@{/runshellscript/update}" method="post">
+  <form th:action="@{/runshellscript/delete}" method="post">
     <div class="form-group">
       <label for="username">Username:</label>
       <input type="text" id="username" name="username" placeholder="Enter username">
     </div>
-    <div class="form-group">
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" placeholder="Enter password">
-    </div>
-    <button type="submit">Update Account</button>
+    <button type="submit">Delete Account</button>
   </form>
 </div>
 

@@ -129,7 +129,9 @@ public class SlurmController {
 
         try {
             // Path to your shell script
-            String scriptPath = "/home/csedc-kiran/slurm_manager_project/add_user.sh"; // Update with the correct path to your shell script
+            String currentPath = System.getProperty("user.dir");
+            //String scriptPath = "/home/kiran/prj/slurm-user-manager/scripts/add_user.sh"; // Update with the correct path to your shell script
+            String scriptPath = currentPath+"/scripts/add_user.sh"; // Update with the correct path to your shell script
             String[] command = {scriptPath, param1, param2};
 
             // Create a ProcessBuilder to execute the shell script
@@ -185,7 +187,9 @@ public class SlurmController {
 
         try {
             // Path to your shell script
-            String scriptPath = "/home/csedc-kiran/slurm_manager_project/mod_user.sh"; // Update with the correct path to your shell script
+            String currentPath = System.getProperty("user.dir");
+            //String scriptPath = "/home/kiran/prj/slurm-user-manager/scripts/mod_user.sh"; // Update with the correct path to your shell script
+            String scriptPath = currentPath+"/scripts/mod_user.sh"; // Update with the correct path to your shell script
             String[] command = {scriptPath, param1, param2};
 
             // Create a ProcessBuilder to execute the shell script
@@ -241,7 +245,9 @@ public class SlurmController {
 
         try {
             // Path to your shell script
-            String scriptPath = "/home/csedc-kiran/slurm_manager_project/del_user.sh"; // Update with the correct path to your shell script
+            String currentPath = System.getProperty("user.dir");
+            //String scriptPath = "/home/kiran/prj/slurm-user-manager/scripts/del_user.sh"; // Update with the correct path to your shell script
+            String scriptPath = currentPath+"/scripts/del_user.sh"; // Update with the correct path to your shell script
             String[] command = {scriptPath, param1};
 
             // Create a ProcessBuilder to execute the shell script
@@ -291,7 +297,7 @@ public class SlurmController {
 		 /*try {
 			 // Path to your shell script
             String scriptPath = "C:/Users/91911/study/Shell_Script/first.sh";
-
+            String currentPath = System.getProperty("user.dir");
             // Execute shell script using PowerShell
             ProcessBuilder pb = new ProcessBuilder("powershell.exe", "-Command", scriptPath);
             pb.redirectErrorStream(true); // Redirect error stream to output stream
@@ -338,7 +344,10 @@ public class SlurmController {
 
         try {
             // Path to your shell script
-            String scriptPath = "/home/csedc-kiran/slurm_manager_project/user_count.sh"; // Update with the correct path to your shell script
+            String currentPath = System.getProperty("user.dir");
+        	//System.out.println("Current working directory: " + currentPath);
+       	    //String scriptPath = "/home/kiran/prj/slurm-user-manager/scripts/user_count.sh"; // Update with the correct path to your shell script
+            String scriptPath = currentPath+"/scripts/user_count.sh"; // Update with the correct path to your shell script
             String[] command = {scriptPath};
 
             // Create a ProcessBuilder to execute the shell script
