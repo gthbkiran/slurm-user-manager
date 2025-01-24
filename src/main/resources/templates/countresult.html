@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Execution Result</title>
+</head>
+<body>
+<!-- <h3 th:text="${message}"></h3> Displaying the message passed from the controller -->
+<!-- Show success message when exitCode is 1 -->
+
+<div th:if="${flag == 1}">
+    <div style="color: green;font-weight: bold;">
+        <span th:text="${message}"></span> <!-- Success message -->
+    </div>
+</div>
+
+<!-- Show error message when exitCode is 0 -->
+<div th:if="${flag == 0}">
+    <div style="color: red;font-weight: bold;">
+        <span th:text="${message}"></span> <!-- Error message -->
+    </div>
+</div>
+<!-- <p th:if="${outputLogs != null}">
+<h3>Output Logs:</h3>
+<pre th:text="${outputLogs}"></pre></p> Using <pre> for preserving line breaks and formatting -->
+
+<h2>Number of Regular Users:</h2>
+<p th:text="${outputLogs}"></p>
+
+<h2>Usernames:</h2>
+<ul>
+    <!-- Loop through the list of usernames and display each one in a list item -->
+    <li th:each="username : ${usernames}" th:text="${username}"></li>
+</ul>
+
+
+
+
+<!-- Display the error logs (if any) -->
+<!-- <p th:if="${errorLogs != null}" >
+<h3>Error Logs:</h3>
+<pre th:text="${errorLogs}"></pre> </p> Using <pre> for error logs -->
+<p th:if="${errorLogs != null}" th:text="${errorLogs}">errorLogs:</p>
+
+
+<!-- Optionally, you can also show the parameters passed to the script if needed -->
+
+
+
+<a href="/">Go back</a>
+</body>
+</html>

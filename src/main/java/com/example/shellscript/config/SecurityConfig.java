@@ -27,7 +27,7 @@ public class SecurityConfig {
         http
                 .authorizeRequests()
                 .requestMatchers("/actuator/**","/images/**", "/css/**", "/js/**", "/static/**",
-                        "/login", "/custo", "/runshellscript","/layout","/create").permitAll()  // Allow unauthenticated access to login and index pages
+                        "/login", "/custo", "/runshellscript","/runshellscript/update","/runshellscript/delete","/layout","/create","/usercount","/update","/delete").permitAll()  // Allow unauthenticated access to login and index pages
                 .anyRequest().authenticated()  // Secure all other requests
                 .and()
                 .formLogin(form -> form

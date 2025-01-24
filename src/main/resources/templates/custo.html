@@ -4,7 +4,7 @@
 <head>
     <style>
         html,body {
-            background-image: url('/images/3d_3.jpg');
+            background-image: url('/images/red_black_1.jpg');
             background-size: cover; /* Optional: ensures the image covers the entire screen */
             background-position: center; /* Optional: centers the image */
             background-repeat: no-repeat; /* Optional: prevents the image from repeating */
@@ -32,7 +32,7 @@
 <div class="container" >
     <img th:src="@{images/slurm-logo.png}" alt="cat" style="width:10%;height:10%;">
     <form class="form-signin" th:action="@{/layout}" method="post" >
-        <h3 class="form-header" style="align:center">Slurm Account Manager</h3>
+        <h4 class="form-header" style="align:center"><b>Slurm Account Manager</b></h4>
         <p>
             <label for="username" class="sr-only">Username</label>
             <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
