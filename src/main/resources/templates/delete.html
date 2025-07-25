@@ -1,81 +1,59 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Delete Account</title>
+
+  <!-- Bootstrap + Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+
   <style>
     .form-container {
       background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      border: 1px solid #e6e6e6;
       width: 100%;
-      max-width: 400px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      max-width: 420px;
     }
 
-    h2 {
+    .form-container h2 {
       text-align: center;
-      color: #333;
-      margin-bottom: 20px;
+      color: #003366;
+      margin-bottom: 25px;
     }
 
-    .form-group {
-      margin-bottom: 15px;
+    .btn-hpc {
+      background-color: #003366;
+      color: #fff;
+      font-weight: 600;
     }
 
-    label {
-      font-size: 14px;
-      color: #555;
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    input[type="text"],
-    input[type="password"] {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-      font-size: 14px;
-    }
-
-    button {
-      width: 100%;
-      padding: 12px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #0056b3;
+    .btn-hpc:hover {
+      background-color: #002244;
     }
   </style>
 </head>
 
 <body>
 
-<div class="form-container" th:fragment="content">
-  <h2>Delete Account</h2>
-
-  <form th:action="@{/runshellscript/delete}" method="post">
-    <div class="form-group">
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" placeholder="Enter username">
-    </div>
-    <button type="submit">Delete Account</button>
-  </form>
+<!-- Injected into layout.html via th:fragment -->
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 75vh;" th:fragment="content">
+  <div class="form-container">
+    <h2>Delete Account</h2>
+    <form th:action="@{/runshellscript/delete}" method="post">
+      <div class="mb-3">
+        <label for="username" class="form-label">Username:</label>
+        <input type="text" id="username" name="username" class="form-control" placeholder="Enter username" required />
+      </div>
+      <button type="submit" class="btn btn-hpc w-100">Delete Account</button>
+    </form>
+  </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

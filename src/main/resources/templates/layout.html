@@ -4,131 +4,163 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Slurm User Management</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap + FontAwesome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
     <style>
-        header {
-            background-color: white;
-            color: white;
-            padding: 15px 0;
-            position: relative;
-            z-index: 1000;
-            display: flex;
-            justify-content: center; /* Center the content horizontally */
-            align-items: center; /* Vertically center if needed */
-
+        :root {
+          --hpc-blue: #003366;
+          --hpc-accent: #00bcd4;
+          --hpc-dark: #1f1f1f;
+          --bg-light: #f5f7fa;
         }
-        /* Ensure the body takes full height */
+
         body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            background-image: url('/images/slurm-img.jpg');
-            background-size: cover; /* Optional: ensures the image covers the entire screen */
-            background-position: center center; /* Optional: centers the image */
-            background-repeat: no-repeat; /* Optional: prevents the image from repeating */
+          display: flex;
+          flex-direction: column;
+          min-height: 100vh;
+          background-color: var(--bg-light);
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          margin: 0;
         }
 
-        /* Header style */
         header {
-            background-color: RebeccaPurple;
-            color: white;
-            padding: 15px 0;
-            position: relative;
-            z-index: 1000;
-            text-align: center;
-
+          background-color: var(--hpc-blue);
+          color: white;
+          padding: 15px 0;
+          text-align: center;
+          font-size: 1.5rem;
+          font-weight: 600;
         }
 
-        /* Sidebar fixed on the left, but with padding-top to prevent collision with header */
         .sidebar {
-            position: fixed;
-            top: 60px; /* Push the sidebar down to prevent collision with the header */
-            left: 0;
-            width: 250px;
-            height: calc(100vh - 60px); /* #343a40 Adjust height to take the full screen excluding the header */
-            background-color: Black;
-            color: white;
-            padding-top: 20px;
-            overflow-y: auto;
+          position: fixed;
+          top: 60px;
+          left: 0;
+          width: 250px;
+          height: calc(100vh - 60px);
+          background-color: var(--hpc-dark);
+          padding-top: 20px;
+          overflow-y: auto;
+          z-index: 998;
+        }
+
+        .sidebar h5 {
+          color: #ccc;
+          font-weight: 500;
         }
 
         .sidebar .nav-link {
-            color: white;
-            text-decoration: none;
-            padding: 10px 15px;
+          color: #ddd;
+          padding: 12px 20px;
+          font-size: 0.95rem;
+          display: flex;
+          align-items: center;
+          transition: background-color 0.2s ease-in-out;
         }
 
         .sidebar .nav-link:hover {
-            background-color: #495057;
+          background-color: var(--hpc-accent);
+          color: #000;
         }
 
-        /* Main content should have a margin-left to accommodate the sidebar */
+        .sidebar .nav-link i {
+          margin-right: 10px;
+        }
+
+        .sidebar .nav-link.active {
+          background-color: var(--hpc-accent);
+          color: #000;
+          font-weight: 600;
+        }
+
         .main-content {
-            margin-left: 250px;
-            padding: 20px;
-            flex-grow: 1;
-            overflow-y: auto; /* Make content scrollable */
-            padding-top: 20px; /* Ensure content starts below the header */
+          margin-left: 250px;
+          padding: 30px;
+          flex-grow: 1;
+          background-color: #f5f7fa;
+          min-height: calc(100vh - 120px);
+          overflow-y: auto;
         }
 
-        /* Footer style */
         footer {
-            background-color: RebeccaPurple;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            position: relative;
-            z-index: 1000;
+          background-color: var(--hpc-blue);
+          color: white;
+          text-align: center;
+          padding: 10px;
+          font-size: 0.9rem;
         }
 
-        /* Sidebar link icons */
-        .sidebar-link i {
-            margin-right: 10px;
-        }
+        @media (max-width: 768px) {
+          .sidebar {
+            position: static;
+            width: 100%;
+            height: auto;
+          }
 
+          .main-content {
+            margin-left: 0;
+            padding: 20px;
+          }
+        }
     </style>
 </head>
 <body>
 
 <!-- Header -->
-<header>
-    <div class="container">
-        <h1 class="mb-0">Slurm User Manager</h1>
+<header class="bg-dark-blue py-2">
+    <div class="container-fluid d-flex justify-content-center align-items-center px-4 position-relative">
+
+        <!-- Center-aligned logo and title -->
+        <div class="d-flex align-items-center">
+            <img th:src="@{/images/slurm-logo.png}" alt="Slurm Logo" style="height: 30px;" class="me-2" />
+            <span class="h5 mb-0 text-white">Slurm User Manager</span>
+        </div>
+
+        <!-- Logout aligned to the right -->
+        <div class="position-absolute end-0 px-4">
+            <a href="/logout" class="text-white text-decoration-none" style="font-size: 0.9rem;">Logout</a>
+        </div>
     </div>
 </header>
 
-<!-- Sidebar (fixed) -->
+
+
+
+<!-- Sidebar -->
 <div class="sidebar">
-    <h3 class="text-center mb-4">Menu</h3>
+    <h5 class="text-center mb-4">Menu</h5>
     <ul class="nav flex-column">
         <li class="nav-item">
-            <a th:href="@{/create}" class="nav-link sidebar-link"><i class="fas fa-user-plus"></i> Create Account</a>
+            <a th:href="@{/create}" class="nav-link"><i class="fas fa-user-plus"></i> Create Account</a>
         </li>
         <li class="nav-item">
-            <a th:href="@{/update}" class="nav-link sidebar-link"><i class="fas fa-user-edit"></i> Update Account</a>
+            <a th:href="@{/update}" class="nav-link"><i class="fas fa-user-edit"></i> Update Account</a>
         </li>
         <li class="nav-item">
-            <a th:href="@{/delete}" class="nav-link sidebar-link"><i class="fas fa-user-times"></i> Delete Account</a>
+            <a th:href="@{/delete}" class="nav-link"><i class="fas fa-user-times"></i> Delete Account</a>
         </li>
         <li class="nav-item">
-            <a th:href="@{/usercount}" class="nav-link sidebar-link"><i class="fas fa-user-times"></i>Number of Accounts</a>
+            <a th:href="@{/usercount}" class="nav-link"><i class="fas fa-users"></i> Number of Accounts</a>
         </li>
     </ul>
 </div>
 
-<!-- Main Content Area -->
+<!-- Main Content -->
 <div class="main-content">
-    <div th:if="${body != null}"><div th:replace="${body}"></div></div>
+    <div th:if="${body != null}">
+        <div th:replace="${body}"></div>
+    </div>
 </div>
 
 <!-- Footer -->
 <footer>
-    <h6>&copy; 2024 Slurm User Management. All rights reserved.</h6>
+    &copy; 2024 Slurm User Management. All rights reserved.
 </footer>
 
-<!-- Optional: Include Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
