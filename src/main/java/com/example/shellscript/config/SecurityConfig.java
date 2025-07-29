@@ -48,8 +48,8 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(UserDetailsService userDetailsService,
                                                        BaseLdapPathContextSource contextSource) {
         // In-Memory auth provider
-        DaoAuthenticationProvider inMemoryProvider = new DaoAuthenticationProvider();
-        inMemoryProvider.setUserDetailsService(userDetailsService);
+/*        DaoAuthenticationProvider inMemoryProvider = new DaoAuthenticationProvider();
+        inMemoryProvider.setUserDetailsService(userDetailsService);*/
 
         // LDAP auth provider
         LdapBindAuthenticationManagerFactory factory = new LdapBindAuthenticationManagerFactory(contextSource);
@@ -57,7 +57,7 @@ public class SecurityConfig {
         AuthenticationManager ldapAuthManager = factory.createAuthenticationManager();
 
         return new ProviderManager(Arrays.asList(
-                inMemoryProvider,
+                /*inMemoryProvider,*/
                 ((ProviderManager) ldapAuthManager).getProviders().get(0)
         ));
     }
