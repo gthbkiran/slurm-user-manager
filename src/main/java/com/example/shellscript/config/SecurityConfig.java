@@ -45,7 +45,10 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(UserDetailsService userDetailsService,
+    public AuthenticationManager authenticationManager(
+/*
+            UserDetailsService userDetailsService,
+*/
                                                        BaseLdapPathContextSource contextSource) {
         // In-Memory auth provider
 /*        DaoAuthenticationProvider inMemoryProvider = new DaoAuthenticationProvider();
